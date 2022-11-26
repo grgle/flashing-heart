@@ -20,16 +20,12 @@ basic.forever(function () {
     for (let list = 0; list <= max; list++) {
         power += 1
         pins.analogWritePin(AnalogPin.P0, power)
-        pins.analogWritePin(AnalogPin.P1, power)
-        pins.analogWritePin(AnalogPin.P2, power)
         basic.pause(1)
         if (power >= max) {
             list = 0
             for (let list = 0; list <= 1023; list++) {
                 power += -1
                 pins.analogWritePin(AnalogPin.P0, power)
-                pins.analogWritePin(AnalogPin.P1, power)
-                pins.analogWritePin(AnalogPin.P2, power)
                 basic.pause(1)
                 if (power <= min) {
                     break;
@@ -37,4 +33,10 @@ basic.forever(function () {
             }
         }
     }
+})
+basic.forever(function () {
+    led.plotBarGraph(
+    power,
+    1023
+    )
 })
